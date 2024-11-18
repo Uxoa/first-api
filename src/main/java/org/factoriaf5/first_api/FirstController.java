@@ -1,4 +1,4 @@
-package org.factoriaf5.first_api.books;
+package org.factoriaf5.first_api;
 
 import org.springframework.web.bind.annotation.*;
 
