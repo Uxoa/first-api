@@ -13,16 +13,16 @@ import java.util.Optional;
 public class BookController {
     
     private final InMemoryBookRepository bookRepository;
-    
+
     public BookController() {
         this.bookRepository = new InMemoryBookRepository();
     }
-    
+
     @GetMapping
     public List<Book> getAllBooks() {
         return this.bookRepository.findAll();
     }
-    
+
     @GetMapping("/{isbn}")
     public ResponseEntity<Book> getBookByIsbn(@PathVariable String isbn) {
         Optional<Book> optionalBook = bookRepository.findByIsbn(isbn);
@@ -33,7 +33,7 @@ public class BookController {
         
         return new ResponseEntity<>(HttpStatus.NOT_FOUND); // 404 Not Found
     }
-    
+
     @PostMapping
     public Book createBook(@RequestBody Book book) {
         // comprobar que no existe el isbn si existe return (bad_request)
@@ -45,7 +45,7 @@ public class BookController {
         bookRepository.saveBook(book);
         return book; // OK (200) or Created (201)
     }
-    
+
     @DeleteMapping("/{isbn}")
     public String deleteBookByIsbn(@PathVariable String isbn) {
         // si no existe retornar un 404
@@ -57,7 +57,7 @@ public class BookController {
         bookRepository.deleteByIsbn(isbn);
         return "EL libro se ha borrado correctamente";
     }
-    
+
     // Update -> modificar un libro por su isbn (PUT)
     @PutMapping("/{isbn}")
     public ResponseEntity<String> updateBook(@PathVariable String isbn, @RequestBody Book updatedBook) {
@@ -74,10 +74,8 @@ public class BookController {
         choosedBook.setTitle(updatedBook.getTitle());
         choosedBook.setAuthor(updatedBook.getAuthor());
         
-        // Guardo el libro actualizado en el repositorio
-        bookRepository.saveBook(choosedBook);
-        
         // Retorno mensaje de éxito
         return ResponseEntity.ok("El libro con ISBN " + isbn + " se ha actualizado correctamente.");
     }
+
 }

@@ -9,5 +9,4 @@ public interface BookRepository {
     void saveBook(Book book);
     void deleteByIsbn(String isbn);
     
-    void updateByIsbn(String isbn);
 }
