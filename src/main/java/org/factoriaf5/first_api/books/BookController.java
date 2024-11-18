@@ -3,6 +3,7 @@ package org.factoriaf5.first_api.books;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +38,10 @@ public class BookController {
     public Book createBook(@RequestBody Book book) {
         
         // comprobar que no existe el isbn si existe return (bad_request)
-        
+        Optional<Book> existingBook = bookRepository.findByIsbn(book.getIsbn());
+        if (existingBook.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book with ISBN already exists");
+        }
         bookRepository.save(book);
         return book; // OK (200) or Created (201)
     }
