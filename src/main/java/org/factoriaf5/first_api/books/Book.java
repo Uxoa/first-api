@@ -5,9 +5,9 @@ public class Book {
     private String title;
     private String author;
     
-    public Book(String isbn, String name, String author) {
+    public Book(String isbn, String title, String author) {
         this.isbn = isbn;
-        this.title = name;
+        this.title = title;
         this.author = author;
     }
     
@@ -17,7 +17,7 @@ public class Book {
     }
     
     public String getName() {
-        return name;
+        return title;
     }
     
     public String getAuthor() {
