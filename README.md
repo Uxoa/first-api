@@ -6,7 +6,7 @@ He creado una API REST que permite gestionar libros utilizando un repositorio en
 - Repositorio (InMemoryBookRepository): Almacena y gestiona los datos de los libros.
 - Modelo (Book): Representa un libro como objeto.
 
-![bookF5Uml](https://github.com/user-attachments/assets/2ebc19ec-49d3-45f8-8afe-451a7c510515)
+<img src="https://github.com/user-attachments/assets/2ebc19ec-49d3-45f8-8afe-451a7c510515" alt="bookF5Uml" width="700"/>
 
 
 ## 🚀 Endpoints disponibles
