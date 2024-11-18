@@ -38,7 +38,11 @@ public class BookController {
     public Book createBook(@RequestBody Book book) {
         
         // comprobar que no existe el isbn si existe return (bad_request)
-        
+        String isbn = book.getIsbn();
+        Optional<Book> optionalBook = bookRepository.findByIsbn(isbn);
+        if (optionalBook.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book with ISBN already exists");
+        }
         bookRepository.save(book);
         return book; // OK (200) or Created (201)
     }
