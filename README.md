@@ -1,6 +1,11 @@
 # 📚 Book API
 
-Una API REST simple para gestionar libros almacenados en memoria.
+He creado una API REST que permite gestionar libros utilizando un repositorio en memoria (InMemoryBookRepository). Los componentes principales son:
+
+- Controlador (BookController): Expone los endpoints REST.
+- Repositorio (InMemoryBookRepository): Almacena y gestiona los datos de los libros.
+- Modelo (Book): Representa un libro como objeto.
+
 
 ## 🚀 Endpoints disponibles
 
