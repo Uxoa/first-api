@@ -41,7 +41,7 @@ public class BookController {
         String isbn = book.getIsbn();
         Optional<Book> optionalBook = bookRepository.findByIsbn(isbn);
         if (optionalBook.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book with ISBN already exists");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ya existe este ISBN");
         }
         bookRepository.save(book);
         return book; // OK (200) or Created (201)
@@ -55,4 +55,8 @@ public class BookController {
     }
     
     // Update -> modificar un libro por su isbn (PUT)
+    @PutMapping("/{isbn}")
+    public void updateBook(@PathVariable String isbn){
+        bookRepository.updateByIsbn(isbn);
+    }
 }

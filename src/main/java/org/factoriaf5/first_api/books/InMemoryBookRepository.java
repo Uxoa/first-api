@@ -33,4 +33,8 @@ public class InMemoryBookRepository implements BookRepository {
     public void deleteByIsbn(String isbn) {
         booksDB.removeIf(book -> book.getIsbn().equals(isbn));
     }
+    
+    public void updateByIsbn(String isbn){
+    
+    }
 }
