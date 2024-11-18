@@ -1,6 +1,5 @@
 package org.factoriaf5.first_api.books;
 
-import org.apache.catalina.valves.rewrite.Substitution;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +42,7 @@ public class BookController {
         if (optionalBook.isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        bookRepository.save(book);
+        bookRepository.saveBook(book);
         return book; // OK (200) or Created (201)
     }
     
@@ -62,24 +61,23 @@ public class BookController {
     // Update -> modificar un libro por su isbn (PUT)
     @PutMapping("/{isbn}")
     public ResponseEntity<String> updateBook(@PathVariable String isbn, @RequestBody Book updatedBook) {
-        // Buscar el libro por su ISBN
+        // Busco el libro por su ISBN
         Optional<Book> optionalBook = bookRepository.findByIsbn(isbn);
         
-        // Si el libro no existe, lanzar una excepción con código 404
+        // Si el libro no existe, lanzo una excepción con código 404
         if (!optionalBook.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El libro con ISBN " + isbn + " no existe.");
         }
         
-        // Recuperar el libro existente y actualizar sus propiedades
-        Book existingBook = optionalBook.get();
-        existingBook.setTitle(updatedBook.getTitle());
-        existingBook.setAuthor(updatedBook.getAuthor());
-        existingBook.setIsbn(updatedBook.getIsbn()); // Esto puede omitirse si el ISBN no cambia
+        // Recupero el libro existente y actualizo sus propiedades
+        Book choosedBook = optionalBook.get();
+        choosedBook.setTitle(updatedBook.getTitle());
+        choosedBook.setAuthor(updatedBook.getAuthor());
         
-        // Guardar el libro actualizado en el repositorio
-        bookRepository.save(existingBook);
+        // Guardo el libro actualizado en el repositorio
+        bookRepository.saveBook(choosedBook);
         
-        // Retornar mensaje de éxito
+        // Retorno mensaje de éxito
         return ResponseEntity.ok("El libro con ISBN " + isbn + " se ha actualizado correctamente.");
     }
 }

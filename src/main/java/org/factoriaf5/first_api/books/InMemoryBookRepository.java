@@ -25,7 +25,16 @@ public class InMemoryBookRepository implements BookRepository {
     }
     
     @Override
-    public void save(Book book) {
+    public void saveBook(Book book) {
+        // Buscar si el libro ya existe por su ISBN
+        Optional<Book> choosedBook = findByIsbn(book.getIsbn());
+        
+        if (choosedBook.isPresent()) {
+            // Si el libro existe, actualizarlo
+            booksDB.remove(choosedBook.get());
+        }
+        
+        // Añadir el libro actualizado o nuevo
         booksDB.add(book);
     }
     
