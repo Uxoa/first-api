@@ -34,5 +34,5 @@ Elimina un libro por su ISBN.
 ## 🛠️ Instrucciones
 - 🗂️ Clona el repositorio.
 - 💻 Ejecuta la aplicación con tu IDE.
-- 🛠️ Usa herramientas como **Postman** o `cURL` para interactuar con la API.
+- 🛠️ Usa herramientas como **Postman** para interactuar con la API.
 
