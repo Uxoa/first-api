@@ -40,7 +40,8 @@ public class BookController {
         // comprobar que no existe el isbn si existe return (bad_request)
         Optional<Book> existingBook = bookRepository.findByIsbn(book.getIsbn());
         if (existingBook.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book with ISBN already exists");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ya existe un libro con " +
+                  "ese isbn.");
         }
         bookRepository.save(book);
         return book; // OK (200) or Created (201)
