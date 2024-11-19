@@ -1,4 +1,4 @@
-package org.factoriaf5.books;
+package org.factoriaf5.first_api.librosJPA;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

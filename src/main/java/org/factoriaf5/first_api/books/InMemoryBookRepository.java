@@ -1,4 +1,4 @@
-package org.factoriaf5.books;
+package org.factoriaf5.first_api.books;
 
 import org.springframework.stereotype.Repository;
 
