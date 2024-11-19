@@ -1,4 +1,4 @@
-package org.factoriaf5.first_api.books;
+package org.factoriaf5.books;
 
 public class Book {
     private String isbn;

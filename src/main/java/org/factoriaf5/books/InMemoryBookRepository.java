@@ -1,7 +1,10 @@
-package org.factoriaf5.first_api.books;
+package org.factoriaf5.books;
+
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class InMemoryBookRepository implements BookRepository {
     
     private final static List<Book> booksDB = new ArrayList<>();
@@ -20,13 +23,13 @@ public class InMemoryBookRepository implements BookRepository {
     public void saveBook(Book book) {
         // Buscar si el libro ya existe por su ISBN
         Optional<Book> choosedBook = findByIsbn(book.getIsbn());
-        
+        // Si el libro existe
         if (choosedBook.isPresent()) {
-            // Si el libro existe, actualizarlo
+            // borrarlo
             booksDB.remove(choosedBook.get());
         }
         
-        // Añadir el libro actualizado o nuevo
+        // y si no crear nuevo o actualizarlo
         booksDB.add(book);
     }
 
